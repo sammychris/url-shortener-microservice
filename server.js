@@ -32,6 +32,15 @@ app.get("/api/hello", function (req, res) {
 });
 
 
+app.post("/api/shorturl/new", function (req, res) {
+  let url = req.body.url;
+  dns.lookup(url.replace(/.+\//,''), function (err, addresses, family) {
+    if(err) return res.json({"error":"invalid URL"});
+    urlArr.push(url);
+    res.json({"original_url": url,"short_url":urlArr.length});
+  });
+});
+
 app.listen(port, function () {
   console.log('Node.js listening ...');
 });
