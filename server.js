@@ -41,6 +41,10 @@ app.post("/api/shorturl/new", function (req, res) {
   });
 });
 
+app.get("/api/shorturl/:num", function (req, res) {
+  res.redirect(urlArr[req.params.num - 1]);
+});
+
 app.listen(port, function () {
   console.log('Node.js listening ...');
 });
